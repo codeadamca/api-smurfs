@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smurf Insult</title>
+</head>
+<body>
+
+    <h1>Smurf Insult</h1>
+
+    <h2 id="insult"></h2>
+
+    <script>
+
+        const url = 'https://pages.codeadam.ca/smurfs/api/insult';
+
+        // Without Await
+        // The response variable will store a promise
+        // With Await 
+        // The response variable will store the result of the 
+        // resolved promise
+        
+        console.log('11111');
+
+        async function getInsult() {
+            console.log('66666');
+            let response = await fetch(url);
+            console.log(response);
+            console.log('44444');
+
+            let data = await response.json();
+            console.log(data);
+            console.log('55555');
+
+            console.log(data.insult);
+
+            const insult = document.getElementById("insult");
+            insult.innerHTML = data.insult;
+
+        }
+
+        console.log('22222');
+
+        getInsult();
+
+        console.log('33333');
+        
+
+        /*
+        console.log('This log will run first!');
+
+        fetch(url)
+            .then((response) => {
+                console.log('This log will run third!');
+                console.log(response);
+                return response.json();
+            })
+            .then((data) => {
+                console.log('This log will run fourth!');
+                console.log(data);
+            })
+            .catch((error) => {
+                console.log('This log will only run if there is an error!');
+                cosnole.log(error);
+            });
+
+        console.log('This log will run second!');
+        */
+
+        /*
+        let fetchPromise = fetch(url);
+
+        fetchPromise.then((response) => {
+            console.log(response);
+
+            let jsonPromise = response.json();
+
+            jsonPromise.then((data) => {
+                console.log(data);
+            });
+            
+        });
+        */
+
+    </script>
+    
+</body>
+</html>
