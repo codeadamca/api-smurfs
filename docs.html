@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docs</title>
+</head>
+<body>
+    
+
+
+
+Pirate API
+The pirate API is so easy to use that even a pirate could use it (if that pirate knew how to use a computer and write programs).
+
+Pirate Insult API
+The Pirate Insult API doesn't require any authorization or input. Just call the endpoint and get a text insult as a response.
+
+Endpoint: https://pirate.monkeyness.com/api/insult
+
+Try it! Just open that URL in a browser and you will get back a different insult each time.
+
+Here is an example using curl from the commandline.
+
+$ curl https://pirate.monkeyness.com/api/insult
+'Tis good ye're here. Ye'll scare away the rats, ye bloody, pox-faced
+codfish! ... Gangway!
+Coming soon: Options to control the elements of the insult.
+
+Pirate Translator API
+The Pirate Translator API doesn't require any authorization, but you do need to tell it what you want translated. Call the endpoint with the "english" argument and get the translated message as a text response.
+
+Endpoint: https://pirate.monkeyness.com/api/translate?english=Hello
+
+Go ahead! Open that URL in a browser and you will get back the pirate translation. You can get it to translate things other than "hello" by putting some other text in there. If you are calling the URL directly, be sure to URL encode what you want to translate.
+
+Here is an example using curl from the commandline.
+
+$ curl 'https://pirate.monkeyness.com/api/translate?english=What%20is%20an%20API?'
+Wha' be an API?
+Coming soon: Options to adjust the translation.
+
+[Home\ [Insult\ [Translate\ [API\ [Store\ [Other\ [About\
+Created in 2006. See other projects from Tim Moses.
+Pirate Monkeyness by Tim Moses is licensed under CC BY 4.0
+</body>
+</html>
