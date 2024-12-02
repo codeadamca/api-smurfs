@@ -3,45 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Docs</title>
+    <title>Smurfs API Documentation</title>
+    <style>
+        body {
+          background-color: #fff;
+          margin: 0;
+          padding: 20px;
+        }
+        #container {
+          max-width: 1000px;
+          margin: auto;
+          font-family: "Comic Neue", cursive;
+        }
+        code {
+            display: block;
+            padding: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            border: 1px solid #000;
+            background-color: #eee;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+        }
+        table {
+            background-color: #eee;
+            border-top: 1px solid #000;
+            border-left: 1px solid #000;
+            border-collapse: collapse;
+            max-width: 600px;
+            width: 100%;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+        }
+        th, td {
+            text-align: left;;
+            border-bottom: 1px solid #000;
+            border-right: 1px solid #000;
+            padding: 10px;
+            border-collapse: collapse;
+        }
+        hr {
+            border-top: 1px solid #eee;
+            margin: 30px auto;
+            max-width: 200px;
+        }
+  
+        a:link,
+        a:active,
+        a:hover,
+        a:visited {
+          color: #000;
+          text-decoration: none;
+        }
+  
+        #codeadam {
+          position: fixed;
+          bottom: 0;
+          right: 0;
+          font-size: 24px;
+          padding: 15px;
+          z-index: 10000;
+          font-family: Arial, Helvetica, sans-serif;
+        }
+        #codeadam img {
+          vertical-align: middle;
+        }
+  
+        #docs {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          font-size: 30px;
+          padding: 15px;
+          color: #000;
+      }
+      </style>
+
+    <script
+      src="https://kit.fontawesome.com/57a8a8c892.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lora"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=PT+Sans+Narrow"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
     
+    <div id="container">
 
+        <h1>Smurfs API</h1>
 
+        <p>
+            The <a href="https://en.wikipedia.org/wiki/The_Smurfs">Smurfs</a> 
+            API is a sample API intended to provide developers with an example of how to integrate code with an API and 
+            how to build an API. 
+        </p>
 
-Pirate API
-The pirate API is so easy to use that even a pirate could use it (if that pirate knew how to use a computer and write programs).
+        <p>
+            To make working with the Smurf API simple, all responses are JSON, there is no authorization, and all CORS 
+            restrictions have been removed. 
+        </p>
 
-Pirate Insult API
-The Pirate Insult API doesn't require any authorization or input. Just call the endpoint and get a text insult as a response.
+        <hr>
 
-Endpoint: https://pirate.monkeyness.com/api/insult
+        <h2>Smurf Insult API</h2>
 
-Try it! Just open that URL in a browser and you will get back a different insult each time.
+        <p>
+            The Smurfs Insult API doesn't require any input parameters. Just call the endpoint and get a JSON
+            insult as a response:
+        </p>
 
-Here is an example using curl from the commandline.
+        <code>https://pages.codeadam.ca/smurfs/api/insult</code>
 
-$ curl https://pirate.monkeyness.com/api/insult
-'Tis good ye're here. Ye'll scare away the rats, ye bloody, pox-faced
-codfish! ... Gangway!
-Coming soon: Options to control the elements of the insult.
+        <p>Try it! Just open that URL in a browser and you will get back a different insult each time.</p>
 
-Pirate Translator API
-The Pirate Translator API doesn't require any authorization, but you do need to tell it what you want translated. Call the endpoint with the "english" argument and get the translated message as a text response.
+        <p>Here is an example using curl from the commandline:</p>
 
-Endpoint: https://pirate.monkeyness.com/api/translate?english=Hello
+        <code>
+            $ curl https://pages.codeadam.ca/smurfs/api/insult
+        </code>
 
-Go ahead! Open that URL in a browser and you will get back the pirate translation. You can get it to translate things other than "hello" by putting some other text in there. If you are calling the URL directly, be sure to URL encode what you want to translate.
+        <p>And a sample response:</p>
 
-Here is an example using curl from the commandline.
+        <pre><code>{
+    "error":"false",
+    "message":"Insult retrieved successfully",
+    "insult":"Your job's so dull, even Smurfette fell asleep!"
+}</code></pre>
 
-$ curl 'https://pirate.monkeyness.com/api/translate?english=What%20is%20an%20API?'
-Wha' be an API?
-Coming soon: Options to adjust the translation.
+        <hr>
 
-[Home\ [Insult\ [Translate\ [API\ [Store\ [Other\ [About\
-Created in 2006. See other projects from Tim Moses.
-Pirate Monkeyness by Tim Moses is licensed under CC BY 4.0
+        <h2>Smurf Translator API</h2>
+
+        <p>
+            The Smurfs Translate API requires once parameter, the text yo uwould like to translate. Just call the endpoint 
+            with a text paramter and will return the translation in a JSON response:
+        </p>
+
+        <code>https://pages.codeadam.ca/smurfs/api/translate</code>
+
+        <table>
+            <tr>
+                <th>Parameter</th>
+                <th>Description</th>
+            </tr><tr>
+                <td>text</td>
+                <td>
+                    A plain text sentence to be translated to how a Smurf would say it. Can be
+                    provided using GET or POST.
+                </td>
+            </tr>
+        </table>
+
+        <p>
+            Open that URL in a browser with a GET parameter for the text to translate.
+        </p>
+
+        <p>Here is an example using curl from the commandline:</p>
+
+        <code>
+            $ curl 'https://pages.codeadam.ca/smurfs/api/translate?test=Hello, how are you feeling%3F'
+        </code>
+
+        <p>And a sample response:</p>
+
+        <pre><code>{
+    "error":"false",
+    "message":"Insult retrieved successfully",
+    "translation":"Smurf, how smurf you?"
+}</code></pre>
+
+        <hr>
+
+        <p>
+            The Smurfs API is rouighly modeled off the 
+            <a href="https://pirate.monkeyness.com/api.html">Pirate API</a>.
+        </p>
+
+    </div> 
+
 </body>
 </html>

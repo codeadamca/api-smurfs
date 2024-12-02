@@ -5,12 +5,28 @@ header('Content-Type: application/json; charset=utf-8');
 
 include('config.php');
 
+$length = rand(5,15);
+$mean = rand(1,10);
+
+$topic = array('height', 'intelligence', 'looks', 'feet', 'head', 'hands', 'home', 'job');
+$topic = $topic[rand(0,count($topic) - 1)];
+
+$prompt = '
+
+Provide a unique funny insult from a Smurf about the person\'s '.$topic.'! Use approximately '.$length.' words. 
+
+If meaness was ranked from 1 to 10, make this insult level '.$mean.' amount of meaness.
+
+Reply with just the insult, no quotes.
+
+';
+
 $apiKey = OPENAI_SECRET;
 $data = [
     'model' => 'gpt-4o-mini',
     'messages' => [
-        ['role' => 'system', 'content' => "Write a detailed script"],
-        ['role' => 'user', 'content' => "Provide a unique funny insult from a Smurf! Use between 6 and 20 words. Reply with just the insult, no quotes."]
+        ['role' => 'system', 'content' => 'Write a detailed script'],
+        ['role' => 'user', 'content' => $prompt]
     ],
     'max_tokens' => 200,
     'temperature' => 1,

@@ -6,7 +6,7 @@
     <title>Insult a Smurf</title>
     <style>
       body {
-        background-color: #402508;
+        background-color: #fff;
         margin: 0;
         padding: 0;
       }
@@ -21,41 +21,47 @@
         text-align: center;
         display: block;
       }
-      #insult-text {
-        display: none;
-        font-size: 9vh;
-      }
-      #insult {
+      #center {
         position: relative;
-        color: white;
+        color: #000;
         margin: auto;
         max-width: 800px;
         width: 100%;
-        font-family: "Pirata One", system-ui;
+        font-family: "Comic Neue", cursive;
         font-weight: 400;
         font-style: normal;
         text-align: center;
       }
-      #insult button {
-        position: absolute;
-        width: 100%;
-        bottom: -50px;
-        left: 0;
-        border: 1px solid #fff;
-        background: #fff;
-        color: #000;
-        font-family: "Pirata One", system-ui;
-        font-size: 64px;
-        padding: 10px 15px;
-        box-sizing: border-box;
-        display: none;
+      #speech {
+        height: 200px;
+        background: url('images/speech.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      #insult-text {
+        position: relative;
+        top: 30px;
+        width: 200px;
+        height: 100px;
+        margin: auto;
+        vertical-align: middle;
+        font-weight: bold;
+        font-size: 22px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      #smurf img {
+        cursor: pointer;
       }
 
       a:link,
       a:active,
       a:hover,
       a:visited {
-        color: #fff;
+        color: #000;
         text-decoration: none;
       }
 
@@ -71,6 +77,15 @@
       #codeadam img {
         vertical-align: middle;
       }
+
+      #docs {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        font-size: 30px;
+        padding: 15px;
+        color: #000;
+    }
     </style>
 
     <script
@@ -86,55 +101,68 @@
       rel="stylesheet"
     />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Pirata+One&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
   </head>
   <body>
     <div id="codeadam">
       <a href="/"><i class="fas fa-bars"></i></a>
       &nbsp;
-      <a href="https://github.com/codeadamca/javascript-pirate-api"
+      <a href="https://github.com/codeadamca/api-smurfs"
         ><i class="fab fa-github"></i
       ></a>
       &nbsp;
       <a href="https://codeadam.ca"
-        ><img src="https://codeadam.ca/images/code-block-white.png" width="30"
+        ><img src="https://codeadam.ca/images/code-block-black.png" width="30"
       /></a>
     </div>
 
+    <div id="docs">
+        <a href="/smurfs/docs">
+            <i class="fas fa-book"></i>
+        </a>
+      </div>
+
     <div id="container">
-      <div id="insult">
-        <div id="loading"><i class="fas fa-skull"></i></div>
-        <span id="insult-text"></span>
-        <button>
-          <i class="fas fa-skull-crossbones"></i>
-        </button>
+
+        <div id="center">
+        <div id="speech">
+          <div id="insult-text"></div>
+        </div>
+        <div id="smurf">
+            <img src="images/smurf.webp" />
+        </div>
       </div>
     </div>
+    </div>
     <script>
-      const url = "insult.php";
+      const url = "https://pages.codeadam.ca/smurfs/api/insult";
       const insultText = document.getElementById("insult-text");
       // const insultButton = document.querySelectorAll("#insult button")[0];
-      const loading = document.getElementById("loading");
-      const container = document.getElementById("container");
+      // const loading = document.getElementById("loading");
+      const smurfImage = document.querySelectorAll("#smurf img")[0];
 
       // insultButton.addEventListener("click", function () {
-      container.addEventListener("click", function () {
-        loading.style.display = "block";
-        insultText.style.display = "none";
+    smurfImage.addEventListener("click", function () {
+        // loading.style.display = "block";
+        insultText.innerHTML = '<i class="fas fa-spinner fa-spin fa-lg"></i>';
 
-        const fetchPromise = fetch(url, {mode: "no-cors"})
-          .then((response) => response.json())
+        const fetchPromise = fetch(url)
+          .then((response) => {
+            return response.json()
+          })
           .then((data) => {
+            console.log(data);
             insultText.innerHTML = data.insult;
-            loading.style.display = "none";
-            insultText.style.display = "inline";
+            // loading.style.display = "none";
           });
       });
+      
+      window.onload = () => {
+        smurfImage.click();   
+      }
+      
     </script>
   </body>
 </html>
