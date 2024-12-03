@@ -3,24 +3,28 @@
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json; charset=utf-8');
 
-$length = rand(5, 16);
-$level = rand(1, 10);
+$length = rand(5,15);
+$mean = rand(1,10);
 
-$prompt = 'Can you give me a smurf insult? 
+$topic = array('height', 'intelligence', 'looks', 'feet', 'head', 'hands', 'home', 'job');
+$topic = $topic[rand(0,count($topic) - 1)];
 
-Can you make it '.$length.' words long.
+$prompt = '
 
-On a scale of one to ten, one being kind and ten being mean, 
-can you make the insult a level '.$level.'.
+Provide a unique funny insult from a Smurf about the person\'s '.$topic.'! Use approximately '.$length.' words. 
 
-Your response should only be the insult.';
+If meaness was ranked from 1 to 10, make this insult level '.$mean.' amount of meaness.
+
+Reply with just the insult. Do not include any quotations in the response.
+
+';
 
 $apiKey = OPENAI_SECRET;
 $data = [
     'model' => 'gpt-4o-mini',
     'messages' => [
-        ['role' => 'system', 'content' => "Write a detailed script"],
-        ['role' => 'user', 'content' => $prompt],
+        ['role' => 'system', 'content' => 'Write a detailed script'],
+        ['role' => 'user', 'content' => $prompt]
     ],
     'max_tokens' => 200,
     'temperature' => 1,
@@ -38,13 +42,10 @@ curl_close($ch);
 
 $result = json_decode($response, true);
 
-$insult = $result['choices'][0]['message']['content'];
-$insult = str_replace('"', '', $insult);
-
 $data = [
     'error' => 'false',
     'message' => 'Insult retrieved successfully',
-    'insult' => $insult,
+    'insult' => $result['choices'][0]['message']['content'],
 ];
 
 echo json_encode($data);

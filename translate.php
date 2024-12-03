@@ -3,8 +3,6 @@
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json; charset=utf-8');
 
-include('config.php');
-
 if(isset($_GET['text'])) $text = $_GET['text'];
 elseif(isset($_POST['text'])) $text = $_POST['text'];
 else
