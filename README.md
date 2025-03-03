@@ -12,9 +12,9 @@ A basic Smurf API for learning JavaScript and APIs. This API generates [Smurf](h
 
 ## Project Stack
 
-This project uses vanilla [PHP](https://www.php.net/) and the [Open AI API](https://platform.openai.com/docs/overview).
+This project uses vanilla [PHP](https://www.php.net/), [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and the [Open AI API](https://platform.openai.com/docs/overview).
 
-<img src="https://console.codeadam.ca/api/image/php" width="60"> <img src="https://console.codeadam.ca/api/image/openai" width="60"> 
+<img src="https://console.codeadam.ca/api/image/php" width="60"> <img src="https://console.codeadam.ca/api/image/openai" width="60"> <img src="https://console.codeadam.ca/api/image/javascript" width="60"> 
 
 ---
 
